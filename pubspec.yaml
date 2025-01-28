@@ -28,6 +28,25 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  freezed: ^2.5.8
+  flutter_bloc: ^9.0.0
+  uuid: ^4.5.1
+  freezed_annotation: ^2.4.4
+  build_runner: ^2.4.14
+  equatable: ^2.0.7
+  cloud_firestore: ^5.6.2
+  firebase_auth: ^5.4.1
+  firebase_core: ^3.10.1
+  get_it: ^8.0.3
+  bloc_concurrency: ^0.3.0
+  url_launcher: ^6.3.1
+  adaptive_dialog: ^2.4.0
+  accordion: ^2.6.0
+  intl: ^0.20.1
+  flutter_svg: ^2.0.17
+  flutter_widget_from_html_core: ^0.15.2
+  share_plus: ^10.1.4
+
   flutter:
     sdk: flutter
 
@@ -58,9 +77,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/content/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

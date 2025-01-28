@@ -1,0 +1,4 @@
+enum DatabaseResultStatus {
+  success,
+  error;
+}
