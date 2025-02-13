@@ -48,6 +48,7 @@ class MultiLineFieldState extends State<MultiLineField>
           height: 15,
         ),
         Bouncing(
+          key: ValueKey('multiLineFieldAddNewLineButton'),
           onPress: () {
             _addNewLine();
           },

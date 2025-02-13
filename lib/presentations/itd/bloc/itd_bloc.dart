@@ -172,7 +172,7 @@ class ItdBloc extends Bloc<ItdEvent, ItdState> {
           status: ProcessingNoteStatus.error);
       finalList = loadingList;
     }
-    processingNotes[result.data!.id] = processingNote;
+    processingNotes[result.data?.id ?? note.id] = processingNote;
 
     emit(ItdState.mutationResult(
         notes: finalList,

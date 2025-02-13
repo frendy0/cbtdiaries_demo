@@ -9,7 +9,7 @@ import 'bouncing_widget.dart';
 class SelectDateTimeWidget extends StatefulWidget {
   final DateTime initialDatetime;
   final Function(DateTime) onChanged;
-  final String? dateFormat;
+  final String dateFormat;
 
   const SelectDateTimeWidget(
       {super.key,
@@ -46,7 +46,7 @@ class _SelectDateTimeWidgetState extends State<SelectDateTimeWidget> {
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
-                  DateFormat('MMM dd, yyyy').format(_currentDateTime),
+                  DateFormat(widget.dateFormat).format(_currentDateTime),
                   style: const TextStyle(
                       fontSize: 19, fontWeight: FontWeight.w600),
                 ),

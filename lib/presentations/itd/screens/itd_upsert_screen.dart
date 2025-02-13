@@ -29,7 +29,7 @@ class ItdAddScreen extends StatefulWidget {
 class _ItdAddScreenState extends State<ItdAddScreen> {
   late ItdController controller;
   int stage = -1;
-  late Widget accordion = _buildAccordion();
+  late final Widget accordion = _buildAccordion();
   double heightContainer = 120;
 
   @override
@@ -82,6 +82,7 @@ class _ItdAddScreenState extends State<ItdAddScreen> {
                         CupertinoButton(
                           pressedOpacity: 0.8,
                           onPressed: _save,
+                          key: ValueKey('itdUpsertScreenSaveButton'),
                           minSize: 10,
                           padding: const EdgeInsets.only(right: 10),
                           child: Text(
@@ -142,6 +143,7 @@ class _ItdAddScreenState extends State<ItdAddScreen> {
                                 ),
                                 SelectDateTimeWidget(
                                     initialDatetime: controller.dateTime,
+                                    dateFormat: "MMM dd, yyyy",
                                     onChanged: (DateTime date) {
                                       controller.dateTime = date;
                                     }),
@@ -178,6 +180,7 @@ class _ItdAddScreenState extends State<ItdAddScreen> {
               header: const Text('Title',
                   style: TextStyle(fontWeight: FontWeight.w700)),
               content: TextField(
+                key: const ValueKey("titleTextField"),
                 cursorColor: primaryColor,
                 controller: controller.titleController,
                 textCapitalization: TextCapitalization.sentences,
@@ -201,7 +204,9 @@ class _ItdAddScreenState extends State<ItdAddScreen> {
                 Text(
                     'Describe the event or trigger that led to your thoughts and feelings.',
                     style: TextStyle(fontSize: 14, color: Color(0xFF686868))),
-                MultiLineField(lines: controller.situationControllers)
+                MultiLineField(
+                    key: const ValueKey("situationTextField"),
+                    lines: controller.situationControllers)
               ])),
           AccordionSection(
               isOpen: true,
@@ -213,7 +218,9 @@ class _ItdAddScreenState extends State<ItdAddScreen> {
                 Text(
                     'What thoughts automatically came to your mind? Are there any patterns or assumptions?',
                     style: TextStyle(fontSize: 14, color: Color(0xFF686868))),
-                MultiLineField(lines: controller.autoThoughtsControllers)
+                MultiLineField(
+                    key: const ValueKey("thoughtsTextField"),
+                    lines: controller.autoThoughtsControllers)
               ])),
           AccordionSection(
               isOpen: true,
@@ -225,7 +232,9 @@ class _ItdAddScreenState extends State<ItdAddScreen> {
                 Text(
                     'What were you feeling? Rate the intensity of your emotion from 0 to 10.',
                     style: TextStyle(fontSize: 14, color: Color(0xFF686868))),
-                MultiLineField(lines: controller.emotionsControllers)
+                MultiLineField(
+                    key: const ValueKey("emotionsTextField"),
+                    lines: controller.emotionsControllers)
               ])),
           AccordionSection(
               isOpen: true,
@@ -237,7 +246,9 @@ class _ItdAddScreenState extends State<ItdAddScreen> {
                 Text(
                     'How did you react? What actions or physical sensations did you experience?',
                     style: TextStyle(fontSize: 14, color: Color(0xFF686868))),
-                MultiLineField(lines: controller.reactionsControllers)
+                MultiLineField(
+                    key: const ValueKey("reactionsTextField"),
+                    lines: controller.reactionsControllers)
               ])),
           AccordionSection(
               isOpen: true,
@@ -249,7 +260,9 @@ class _ItdAddScreenState extends State<ItdAddScreen> {
                 Text(
                     'What could you tell yourself instead? How could you challenge your negative thoughts?',
                     style: TextStyle(fontSize: 14, color: Color(0xFF686868))),
-                MultiLineField(lines: controller.responseControllers)
+                MultiLineField(
+                    key: const ValueKey("responseTextField"),
+                    lines: controller.responseControllers)
               ])),
         ]);
   }
@@ -280,6 +293,11 @@ class _ItdAddScreenState extends State<ItdAddScreen> {
       text.writeln("${i + 1}. ${controller.responseControllers[i].text}");
     }
     await Share.share(text.toString(), subject: "CBT Thought Record");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   void _save() async {
